@@ -61,7 +61,7 @@ export default function AuraLanding() {
                 </p>
 
                 <p>
-                  Building the future of reliable end-to-end supply chain ⛓️‍💥 for the world's largest FMCG brands 🍫.
+                  Building the future of reliable end-to-end supply chain ⛓️‍💥 logistics connecting the world's largest FMCG brands 🍫 to every SMB and enterprise.
                 </p>
 
                 <p>
