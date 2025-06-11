@@ -65,7 +65,7 @@ export default function AuraLanding() {
                 
                 <p>
                   I'm the founder of Blaze Market 🔥 (YC S25), a B2B FMCG wholesale platform empowering 1200+ distributors, 270+ brands, 
-                  and 40,000 retail doors across Southeast Asia to streamline sourcing and fulfillment. Backed by General Cataylst.
+                  and 40,000 retail doors across Southeast Asia to streamline sourcing and fulfillment. Backed by General Catalyst.
                 </p>
 
                 <p>
@@ -73,7 +73,7 @@ export default function AuraLanding() {
                 </p>
 
                 <p>
-                  I'm an incoming SDE Intern at Amazon Web Services, where I'll be working on cloud backend for Prime services. *
+                  I'm an incoming sde intern at Amazon Web Services, where I'll be working on cloud backend for Prime services. *
                 </p>
 
                 <p>
