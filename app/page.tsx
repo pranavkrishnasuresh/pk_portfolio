@@ -1,12 +1,20 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Moon, Sun, Github, Linkedin, Mail, ExternalLink } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function AuraLanding() {
   const [isDark, setIsDark] = useState(true)
+
+  useEffect(() => {
+    if (isDark) {
+      document.body.style.backgroundColor = "black"
+    } else {
+      document.body.style.backgroundColor = "white"
+    }
+  }, [isDark])
 
   const toggleTheme = () => {
     setIsDark(!isDark)
