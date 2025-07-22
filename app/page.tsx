@@ -64,7 +64,7 @@ export default function AuraLanding() {
                 </p>
                 
                 <p>
-                  I'm the founder of Blaze Market 🔥 (YC S25), a B2B FMCG wholesale platform empowering 1200+ distributors, 270+ brands, 
+                  I'm the founder of GetASAP ASIA 🔥 (YC S25), a B2B FMCG wholesale platform empowering 1200+ distributors, 270+ brands, 
                   and 40,000 retail doors across Southeast Asia to streamline sourcing and fulfillment. Backed by General Catalyst.
                 </p>
 
@@ -124,7 +124,7 @@ export default function AuraLanding() {
                 <h3 className="text-lg font-medium">Y Combinator S25</h3>
                 <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Summer 2025</span>
               </div>
-              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Founder, Blaze Market</p>
+              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Founder, GetASAP ASIA</p>
               <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
                 Building and scaling B2B FMCG wholesale platform with mentorship of Silicon Valley superheroes.
               </p>
@@ -141,7 +141,7 @@ export default function AuraLanding() {
               className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">Founder - Blaze Market (YC S25)</h3>
+                <h3 className="text-lg font-medium">Founder - GetASAP ASIA (YC S25)</h3>
                 <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Dec 2023 - Present</span>
               </div>
               <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
