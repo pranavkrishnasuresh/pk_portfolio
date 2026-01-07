@@ -72,9 +72,9 @@ export default function AuraLanding() {
                   Powering the future of seamless, intelligent end-to-end supply chains ⛓️‍💥 connecting the world's largest FMCG brands 🍫 with every SMB and enterprise.
                 </p>
 
-                <p>
+                {/* <p>
                   I'm an incoming sde intern at Amazon Web Services, where I'll be working on cloud backend for Prime services. *
-                </p>
+                </p> */}
 
                 <p>
                   🏠 Milton, Georgia → 🌉 San Francisco, California.
@@ -126,7 +126,7 @@ export default function AuraLanding() {
               </div>
               <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Founder, GetASAP ASIA</p>
               <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                Building and scaling B2B FMCG wholesale platform with mentorship of Silicon Valley superheroes.
+                Building and scaling 8-hour B2B fresh-produce distribution for retailers and restaurants across the US & SEA, powered by proprietary micro-fulfillment network.
               </p>
             </div>
           </div>
@@ -162,7 +162,7 @@ export default function AuraLanding() {
                 <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Fall 2025</span>
               </div>
               <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                AWS backend team for Prime services.
+                [Dropped] AWS backend team for Prime services.
               </p>
             </div>
 
