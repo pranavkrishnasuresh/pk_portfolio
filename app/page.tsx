@@ -60,16 +60,20 @@ export default function AuraLanding() {
 
               <div className={`space-y-6 leading-relaxed text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
                 <p>
-                👋 Hey, I'm Pranavkrishna Suresh, a 19 year old CS student at Georgia Tech 🐝!
+                👋 Hey, I'm Pranavkrishna Suresh, a 20 year old founder based in Mountain View, CA!
                 </p>
                 
                 <p>
-                  I'm the founder of GetASAP ASIA 🔥 (YC S25), a B2B FMCG wholesale platform empowering 1200+ distributors, 270+ brands, 
-                  and 40,000 retail doors across Southeast Asia to streamline sourcing and fulfillment. Backed by General Catalyst.
+                  I'm the founder of GETASAP, an AI-native distribution platform enabling same-day delivery of produce to
+                  thousands of retailers across the USA.
                 </p>
 
                 <p>
-                  Powering the future of seamless, intelligent end-to-end supply chains ⛓️‍💥 connecting the world's largest FMCG brands 🍫 with every SMB and enterprise.
+                  We are backed by General Catalyst, YC, Paul Graham, and more!
+                </p>
+
+                <p>
+                  Our mission is to enable produce distribution at the speed of compute.
                 </p>
 
                 {/* <p>
@@ -77,7 +81,7 @@ export default function AuraLanding() {
                 </p> */}
 
                 <p>
-                  🏠 Milton, Georgia → 🌉 San Francisco, California.
+                  🏠 Milton, Georgia.
                 </p>
               </div>
             </div>
@@ -124,7 +128,7 @@ export default function AuraLanding() {
                 <h3 className="text-lg font-medium">Y Combinator S25</h3>
                 <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Summer 2025</span>
               </div>
-              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Founder, GetASAP ASIA</p>
+              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Founder, GETASAP</p>
               <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
                 Building and scaling 8-hour B2B fresh-produce distribution for retailers and restaurants across the US & SEA, powered by proprietary micro-fulfillment network.
               </p>
@@ -141,16 +145,14 @@ export default function AuraLanding() {
               className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">Founder - GetASAP ASIA (YC S25)</h3>
+                <h3 className="text-lg font-medium">GETASAP</h3>
                 <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Dec 2023 - Present</span>
               </div>
               <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                Bootstrapped $10M ARR (FY25)
+                Founder
               </p>
               <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-               <p>
-               Empowering 1200+ distributors, 270+ brands, and 40,000 retailers across Southeast Asia to streamline sourcing and fulfillment through our AI-enabled wholesale B2B marketplace. 
-                </p>
+              Same-day delivery of produce to thousands of retailers across the USA.
               </p>
             </div>
 
@@ -158,11 +160,11 @@ export default function AuraLanding() {
               className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">Incoming SDE Intern - Amazon Web Services</h3>
+                <h3 className="text-lg font-medium">SDE Intern - Amazon Web Services</h3>
                 <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Fall 2025</span>
               </div>
               <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                [Dropped] AWS backend team for Prime services.
+                [Offer] AWS backend team for Prime services.
               </p>
             </div>
 
