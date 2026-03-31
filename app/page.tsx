@@ -60,28 +60,23 @@ export default function AuraLanding() {
 
               <div className={`space-y-6 leading-relaxed text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
                 <p>
-                👋 Hey, I'm Pranavkrishna Suresh, a 20 year old founder based in Mountain View, CA!
+                  👋 Hey, I'm Pranavkrishna Suresh, a 20 year old founder based in Mountain View, CA! 🌉
                 </p>
                 
                 <p>
-                  I'm the founder of GETASAP, an AI-native distribution platform enabling same-day delivery of produce to
-                  thousands of retailers across the USA.
+                  🚀 I'm the founder of <strong>GETASAP</strong>, an AI-native distribution platform enabling same-day delivery of 🥕🍎🥦 fresh produce to thousands of retailers across the USA.
                 </p>
 
                 <p>
-                  We are backed by General Catalyst, YC, Paul Graham, and more!
+                  💸 We are backed by General Catalyst, YC, Paul Graham, and more! 
                 </p>
 
                 <p>
-                  Our mission is to enable produce distribution at the speed of compute.
+                  🎯 Our mission is to enable produce distribution at the speed of compute. ⚡️
                 </p>
 
-                {/* <p>
-                  I'm an incoming sde intern at Amazon Web Services, where I'll be working on cloud backend for Prime services. *
-                </p> */}
-
                 <p>
-                  🏠 Milton, Georgia.
+                  📍 Hometown: Milton, Georgia 🏡
                 </p>
               </div>
             </div>
