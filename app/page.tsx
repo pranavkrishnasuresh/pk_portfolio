@@ -117,13 +117,13 @@ export default function AuraLanding() {
                 GETASAP
               </a>{" "}
               (YC S25), an AI-Native Fresh Produce Logistics company. We enable same-day delivery of
-              🥕🍎🥦 to thousands of retailers and restaurants across the USA and operate an
-              AI-enabled freight brokerage 🚚.
+              produce to thousands of retailers and restaurants across the USA and operate an
+              AI-enabled freight brokerage.
             </p>
 
             <p>
               I&apos;m driven by the belief that AI can transform the critical industries civilization
-              depends on to unlock abundance for all—and I want to help build that future.
+              depends on to unlock abundance for all, and I want to help build that future.
             </p>
 
             <p>
