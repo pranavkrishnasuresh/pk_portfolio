@@ -14,6 +14,17 @@ export default function AuraLanding() {
             Pranavkrishna Suresh
           </a>
           <nav className="flex items-center gap-1">
+            <div className="relative group">
+              <button
+                type="button"
+                className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] cursor-default"
+              >
+                Explorations
+              </button>
+              <span className="pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8e8e8] px-2.5 py-0.5 text-[11px] font-medium text-black opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                Coming Soon
+              </span>
+            </div>
             <a
               href="/"
               className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8]"
