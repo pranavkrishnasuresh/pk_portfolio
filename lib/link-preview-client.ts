@@ -113,11 +113,33 @@ export function ensureScreenshotPreview(href: string) {
   return promise
 }
 
-/** Warm OG first (fast), then screenshots in the background. */
-export async function prefetchLinkPreviews(hrefs: string[]) {
+/** Warm OG first (fast), then screenshots in the background when appropriate. */
+export async function prefetchLinkPreviews(
+  hrefs: string[],
+  options: { screenshots?: boolean } = {}
+) {
+  const { screenshots = true } = options
   await Promise.all(hrefs.map((href) => ensureOgPreview(href)))
+
+  if (!screenshots) return
 
   for (const href of hrefs) {
     await ensureScreenshotPreview(href)
   }
+}
+
+export function shouldPrefetchScreenshots() {
+  if (typeof window === "undefined") return false
+
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  const connection = (
+    navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string }
+    }
+  ).connection
+  const saveData = Boolean(connection?.saveData)
+  const slowNetwork =
+    connection?.effectiveType === "slow-2g" || connection?.effectiveType === "2g"
+
+  return canHover && !saveData && !slowNetwork
 }

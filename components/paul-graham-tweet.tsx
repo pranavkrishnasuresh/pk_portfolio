@@ -101,8 +101,8 @@ async function MinimalTweet({
       href={tweetUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group flex h-full flex-col rounded-xl border border-[#e5e5e5] bg-white transition-colors hover:border-[#ccc] hover:bg-[#fafafa] ${
-        compact ? 'px-3.5 py-3 sm:px-4 sm:py-3.5' : 'px-5 py-4'
+      className={`group flex h-full min-w-0 flex-col rounded-xl border border-[#e5e5e5] bg-white transition-colors hover:border-[#ccc] hover:bg-[#fafafa] ${
+        compact ? 'px-3.5 py-3 sm:px-4 sm:py-3.5' : 'px-4 py-3.5 sm:px-5 sm:py-4'
       }`}
     >
       <div className={`mb-2.5 flex items-center gap-2.5 ${compact ? 'sm:mb-3' : 'mb-3 gap-3'}`}>
@@ -151,7 +151,7 @@ async function MinimalTweet({
       </div>
 
       <p
-        className={`flex-1 whitespace-pre-wrap leading-relaxed text-black ${
+        className={`flex-1 break-words whitespace-pre-wrap leading-relaxed text-black [overflow-wrap:anywhere] ${
           compact ? 'text-[13px] sm:text-[14px]' : 'text-[15px] sm:text-[16px]'
         }`}
       >

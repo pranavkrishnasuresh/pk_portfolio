@@ -7,6 +7,7 @@ import {
   ensureScreenshotPreview,
   getCachedLinkPreview,
   prefetchLinkPreviews,
+  shouldPrefetchScreenshots,
   subscribeLinkPreview,
   type LinkPreviewData,
 } from "@/lib/link-preview-client"
@@ -30,11 +31,27 @@ function getHostname(href: string) {
   }
 }
 
+function useCanHover() {
+  const [canHover, setCanHover] = useState(false)
+
+  useEffect(() => {
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)")
+    const update = () => setCanHover(media.matches)
+    update()
+    media.addEventListener("change", update)
+    return () => media.removeEventListener("change", update)
+  }, [])
+
+  return canHover
+}
+
 export function LinkPreviewPrefetcher({ urls }: { urls: readonly string[] }) {
   useEffect(() => {
     const list = [...urls]
     const run = () => {
-      void prefetchLinkPreviews(list)
+      void prefetchLinkPreviews(list, {
+        screenshots: shouldPrefetchScreenshots(),
+      })
     }
 
     if (typeof window !== "undefined" && "requestIdleCallback" in window) {
@@ -56,6 +73,7 @@ export function HoverLinkPreview({
   children,
   className,
 }: HoverLinkPreviewProps) {
+  const canHover = useCanHover()
   const [open, setOpen] = useState(false)
   const [preview, setPreview] = useState<LinkPreviewData | null>(() =>
     getCachedLinkPreview(href)
@@ -68,20 +86,36 @@ export function HoverLinkPreview({
   useEffect(() => subscribeLinkPreview(href, setPreview), [href])
 
   useEffect(() => {
+    if (!canHover) return
     void ensureOgPreview(href)
-    void ensureScreenshotPreview(href)
-  }, [href])
+    if (shouldPrefetchScreenshots()) {
+      void ensureScreenshotPreview(href)
+    }
+  }, [canHover, href])
 
   useEffect(() => {
-    if (!open) return
+    if (!open || !canHover) return
     void ensureOgPreview(href)
     void ensureScreenshotPreview(href)
-  }, [open, href])
+  }, [open, canHover, href])
 
   useEffect(() => {
     setOgLoaded(false)
     setShotLoaded(false)
   }, [preview?.ogImage, preview?.screenshot])
+
+  if (!canHover) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(className)}
+      >
+        {children}
+      </a>
+    )
+  }
 
   const title = preview?.title ?? host
   const ogImage = preview?.ogImage ?? null
@@ -105,8 +139,9 @@ export function HoverLinkPreview({
       <HoverCardContent
         side="top"
         align="center"
-        sideOffset={12}
-        className="w-[320px] overflow-hidden rounded-2xl border border-black/10 bg-white p-0 shadow-[0_18px_50px_rgba(0,0,0,0.18)]"
+        sideOffset={10}
+        collisionPadding={16}
+        className="w-[min(320px,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-black/10 bg-white p-0 shadow-[0_18px_50px_rgba(0,0,0,0.18)]"
       >
         <div className="relative aspect-[16/10] overflow-hidden bg-[#ececec]">
           {ogImage && (
@@ -161,7 +196,7 @@ export function HoverLinkPreview({
             </div>
           )}
         </div>
-        <div className="space-y-0.5 border-t border-black/5 px-3.5 py-2.5">
+        <div className="space-y-0.5 border-t border-black/5 px-3 py-2.5 sm:px-3.5">
           <div className="line-clamp-2 text-[13px] font-semibold leading-snug text-black">
             {waiting ? "Loading preview…" : title}
           </div>

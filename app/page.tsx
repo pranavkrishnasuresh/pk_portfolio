@@ -55,12 +55,12 @@ export default function AuraLanding() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <LinkPreviewPrefetcher urls={previewUrls} />
-      <div className="max-w-[720px] mx-auto px-4 py-6 sm:px-6 sm:py-8">
+      <div className="mx-auto max-w-[720px] px-4 py-6 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-8 sm:pl-[max(1.5rem,env(safe-area-inset-left))] sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pt-[max(2rem,env(safe-area-inset-top))] sm:pb-[max(2rem,env(safe-area-inset-bottom))]">
         {/* Header */}
         <header className="mb-10 flex flex-col gap-3 sm:mb-16 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <a
             href="/"
-            className="-ml-2 inline-flex max-w-full items-center rounded-full px-2.5 py-1 text-lg font-semibold tracking-tight text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:-ml-3 sm:px-3 sm:text-xl"
+            className="-ml-2 inline-flex min-h-11 max-w-full items-center rounded-full px-2.5 py-1 text-lg font-semibold tracking-tight text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:-ml-3 sm:min-h-0 sm:px-3 sm:text-xl"
           >
             Pranavkrishna Suresh
           </a>
@@ -71,17 +71,17 @@ export default function AuraLanding() {
             <div className="relative group">
               <button
                 type="button"
-                className="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] focus:bg-[#e8e8e8] focus:outline-none cursor-default sm:px-3"
+                className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] focus:bg-[#e8e8e8] focus:outline-none cursor-default sm:min-h-0 sm:px-3"
               >
                 Explorations
               </button>
-              <span className="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8e8e8] px-2.5 py-0.5 text-[11px] font-medium text-black opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100">
+              <span className="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8e8e8] px-2.5 py-0.5 text-[11px] font-medium text-black opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:group-active:opacity-100">
                 Coming Soon
               </span>
             </div>
             <a
               href="/"
-              className="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:px-3"
+              className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:min-h-0 sm:px-3"
             >
               About
             </a>
@@ -89,7 +89,7 @@ export default function AuraLanding() {
               href="https://x.com/PKrishnaSuresh"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:gap-2 sm:px-3"
+              className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:min-h-0 sm:gap-2 sm:px-3"
             >
               <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
@@ -105,15 +105,15 @@ export default function AuraLanding() {
             About
           </h2>
 
-          <div className="text-base leading-[1.7] text-black [&>*+*]:mt-4 sm:text-[17px] sm:[&>*+*]:mt-5">
-            <div className="float-right mb-3 ml-4 h-[100px] w-[100px] overflow-hidden rounded-full border border-black/15 [shape-outside:circle()] sm:mb-2 sm:ml-8 sm:h-[150px] sm:w-[150px]">
+          <div className="text-base leading-[1.7] text-black [&>*]:break-words [&>*+*]:mt-4 sm:text-[17px] sm:[&>*+*]:mt-5">
+            <div className="float-right mb-3 ml-3 h-[88px] w-[88px] overflow-hidden rounded-full border border-black/15 [shape-outside:circle()] min-[400px]:ml-4 min-[400px]:h-[100px] min-[400px]:w-[100px] sm:mb-2 sm:ml-8 sm:h-[150px] sm:w-[150px]">
               <Image
                 src="/headshot.png"
                 alt="Pranavkrishna Suresh"
                 width={150}
                 height={150}
                 className="h-full w-full object-cover grayscale-[35%]"
-                sizes="(max-width: 640px) 100px, 150px"
+                sizes="(max-width: 400px) 88px, (max-width: 640px) 100px, 150px"
                 priority
               />
             </div>
@@ -169,7 +169,7 @@ export default function AuraLanding() {
               <p>
                 Built the technology and logistics infrastructure that scaled GETASAP to 8-figure
                 revenue, and growing.{" "}
-                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
+                <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Company
                 </span>
               </p>
@@ -189,7 +189,7 @@ export default function AuraLanding() {
                 precise, token-level feedback, helping smaller models outperform models up to 1,000×
                 larger across coding, chemistry, and reasoning tasks. Published in ECAI 2025
                 (Bologna, Italy).{" "}
-                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
+                <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Research
                 </span>
               </div>
@@ -205,7 +205,7 @@ export default function AuraLanding() {
                 was one of the earliest adopters of AI in the govtech space, automating repetitive
                 police paperwork with multimodal VLMs to empower police officers. $160K preseed
                 funding raised.{" "}
-                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
+                <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Company
                 </span>
               </div>
@@ -222,7 +222,7 @@ export default function AuraLanding() {
                   Google &amp; UN Solution Challenge
                 </HoverLinkPreview>
                 ; selected out of 8,000 global applicants.{" "}
-                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
+                <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Project
                 </span>
               </div>
@@ -240,7 +240,7 @@ export default function AuraLanding() {
                 </HoverLinkPreview>
                 , winner at UC Berkeley AI Hackathon, the largest AI hackathon in the US with over
                 2,000 participants.{" "}
-                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
+                <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Project
                 </span>
               </div>
@@ -251,7 +251,7 @@ export default function AuraLanding() {
               <p>
                 Multiple hackathon wins including MIT Quantum Computing, Regeneron HealthTech, and
                 Congressional App Challenge.{" "}
-                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
+                <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Project
                 </span>
               </p>
@@ -263,7 +263,7 @@ export default function AuraLanding() {
                 Designed and built a CV-controlled custom gripper mechanism fitted to a UR3 robotic
                 arm for transporting stem cell well plates, in use at Georgia Tech&apos;s Marcus
                 Nanotechnology Lab.{" "}
-                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
+                <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Research
                 </span>
               </p>
@@ -274,7 +274,7 @@ export default function AuraLanding() {
               <p>
                 Engineered a voice fingerprint model for secure candidate authentication for a
                 $500M+ ARR recruitment industry company, reducing interview fraud by 80%.{" "}
-                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
+                <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Internship
                 </span>
               </p>
@@ -333,20 +333,20 @@ export default function AuraLanding() {
             </a>
             )
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1">
             <a
               href="https://linkedin.com/in/pranavkrishnasuresh"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="transition-colors hover:text-black"
+              className="inline-flex h-11 w-11 items-center justify-center transition-colors hover:text-black sm:h-auto sm:w-auto"
             >
               <Linkedin className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
             </a>
             <a
               href="mailto:krishnasljrs@gmail.com"
               aria-label="Email"
-              className="transition-colors hover:text-black"
+              className="inline-flex h-11 w-11 items-center justify-center transition-colors hover:text-black sm:h-auto sm:w-auto"
             >
               <Mail className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
             </a>
