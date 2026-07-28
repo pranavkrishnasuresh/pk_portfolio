@@ -14,7 +14,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Founder of GETASAP`,
+    default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: '/',
     siteName: siteConfig.name,
-    title: `${siteConfig.name} | Founder of GETASAP`,
+    title: siteConfig.name,
     description: siteConfig.description,
     images: [
       {
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: `${siteConfig.name} | Founder of GETASAP`,
+    title: siteConfig.name,
     description: siteConfig.description,
     creator: siteConfig.twitter,
     images: [siteConfig.ogImage],
