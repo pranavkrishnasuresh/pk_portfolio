@@ -1,9 +1,42 @@
 import Image from "next/image"
 import { Linkedin, Mail } from "lucide-react"
+import { siteConfig } from "@/lib/site"
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  alternateName: siteConfig.shortName,
+  url: siteConfig.url,
+  image: `${siteConfig.url}${siteConfig.ogImage}`,
+  jobTitle: "Founder",
+  worksFor: {
+    "@type": "Organization",
+    name: "GETASAP",
+    url: "https://www.getasap.us",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Georgia Institute of Technology",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "San Francisco",
+    addressRegion: "CA",
+    addressCountry: "US",
+  },
+  sameAs: [siteConfig.twitterUrl, siteConfig.linkedinUrl, "https://www.getasap.us"],
+  email: `mailto:${siteConfig.email}`,
+  description: siteConfig.description,
+}
 
 export default function AuraLanding() {
   return (
     <div className="min-h-screen bg-white text-black overflow-x-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
       <div className="max-w-[720px] mx-auto px-4 py-6 sm:px-6 sm:py-8">
         {/* Header */}
         <header className="mb-10 flex flex-col gap-3 sm:mb-16 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -13,7 +46,10 @@ export default function AuraLanding() {
           >
             Pranavkrishna Suresh
           </a>
-          <nav className="-ml-2 flex flex-wrap items-center gap-0.5 sm:ml-0 sm:gap-1">
+          <nav
+            aria-label="Primary"
+            className="-ml-2 flex flex-wrap items-center gap-0.5 sm:ml-0 sm:gap-1"
+          >
             <div className="relative group">
               <button
                 type="button"
@@ -45,7 +81,7 @@ export default function AuraLanding() {
           </nav>
         </header>
 
-        {/* About Section */}
+        <main>
         <section id="about" className="mb-12 sm:mb-16">
           <h2 className="mb-6 text-xl font-semibold tracking-tight text-black sm:mb-8 sm:text-2xl">
             About
@@ -267,6 +303,7 @@ export default function AuraLanding() {
             </div>
           </div>
         </section>
+        </main>
 
         {/* Footer */}
         <footer className="mt-12 flex flex-col gap-3 text-xs font-mono text-[#666] sm:mt-20 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
