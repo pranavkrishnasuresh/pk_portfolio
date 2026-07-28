@@ -1,275 +1,285 @@
-"use client"
-
-import { useState, useEffect } from "react"
 import Image from "next/image"
-import { Moon, Sun, Github, Linkedin, Mail, ExternalLink } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Linkedin, Mail } from "lucide-react"
 
 export default function AuraLanding() {
-  const [isDark, setIsDark] = useState(true)
-
-  useEffect(() => {
-    if (isDark) {
-      document.body.style.backgroundColor = "black"
-    } else {
-      document.body.style.backgroundColor = "white"
-    }
-  }, [isDark])
-
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-  }
-
   return (
-    <div
-      className={`min-h-screen transition-colors duration-300 font-mono ${
-        isDark ? "bg-black text-white" : "bg-white text-black"
-      }`}
-    >
-      <div className="max-w-4xl mx-auto px-6 py-8">
+    <div className="min-h-screen bg-white text-black">
+      <div className="max-w-[720px] mx-auto px-6 py-8">
         {/* Header */}
         <header className="flex items-center justify-between mb-16">
-          <h1 className="text-xl font-medium">Pranavkrishna Suresh</h1>
-          <div className="flex items-center gap-6">
-            <Button variant="ghost" size="sm" onClick={toggleTheme} className="p-2">
-              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </Button>
-            <nav className="flex items-center gap-6">
-              <a href="#about" className="text-sm hover:opacity-70 transition-opacity">
-                About
-              </a>
-              <a href="#education" className="text-sm hover:opacity-70 transition-opacity">
-                Education
-              </a>
-              <a href="#experience" className="text-sm hover:opacity-70 transition-opacity">
-                Experience
-              </a>
-              <a href="#contact" className="flex items-center gap-2 text-sm hover:opacity-70 transition-opacity">
-                <Github className="h-4 w-4" />
-                Follow me
-              </a>
-            </nav>
-          </div>
+          <a
+            href="/"
+            className="-ml-3 inline-flex items-center rounded-full px-3 py-1 text-xl font-semibold tracking-tight text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8]"
+          >
+            Pranavkrishna Suresh
+          </a>
+          <nav className="flex items-center gap-1">
+            <a
+              href="/"
+              className="inline-flex items-center rounded-full px-3 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8]"
+            >
+              About
+            </a>
+            <a
+              href="https://x.com/PKrishnaSuresh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8]"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+              </svg>
+              Follow me
+            </a>
+          </nav>
         </header>
 
         {/* About Section */}
         <section id="about" className="mb-16">
-          <div className="flex flex-col lg:flex-row gap-12 items-start">
-            <div className="flex-1">
-              <h2 className="text-2xl font-medium mb-8">About</h2>
+          <h2 className="text-2xl font-semibold tracking-tight mb-8 text-black">About</h2>
 
-              <div className={`space-y-6 leading-relaxed text-sm ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                <p>
-                  👋 Hey, I'm Pranavkrishna Suresh, a 20 year old founder based in Mountain View, CA! 🌉
-                </p>
-                
-                <p>
-                  🚀 I'm the founder of <strong>GETASAP</strong>, an AI-native distribution platform enabling same-day delivery of 🥕🍎🥦 fresh produce to thousands of retailers across the USA.
-                </p>
-
-                <p>
-                  💸 We are backed by General Catalyst, YC, Paul Graham, and more! 
-                </p>
-
-                <p>
-                  🎯 Our mission is to enable produce distribution at the speed of compute. ⚡️
-                </p>
-
-                <p>
-                  📍 Hometown: Milton, Georgia 🏡
-                </p>
-              </div>
+          <div className="text-[17px] leading-[1.7] text-black [&>p+p]:mt-5">
+            <div className="float-right ml-6 mb-2 w-[140px] h-[140px] rounded-full overflow-hidden border border-black/15 [shape-outside:circle()] sm:ml-8 sm:w-[150px] sm:h-[150px]">
+              <Image
+                src="/headshot.png"
+                alt="Pranavkrishna Suresh"
+                width={150}
+                height={150}
+                className="w-full h-full object-cover grayscale-[35%]"
+              />
             </div>
 
-            <div className="lg:w-64 flex justify-center lg:justify-end">
-              <div className="w-48 h-48 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-700">
-                <Image
-                  src="/headshot.png"
-                  alt="Pranavkrishna Suresh"
-                  width={192}
-                  height={192}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer"
-                />
-              </div>
+            <p>
+              I&apos;m Krishna, a 20 year-old founder based in San Francisco. I&apos;m originally
+              from Milton, Georgia.
+            </p>
+
+            <p>
+              I am the founder of{" "}
+              <a
+                href="https://www.getasap.us"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+              >
+                GETASAP
+              </a>{" "}
+              (YC S25), an AI-Native Fresh Produce Logistics company. We enable same-day delivery of
+              🥕🍎🥦 to thousands of retailers and restaurants across the USA and operate an
+              AI-enabled freight brokerage 🚚.
+            </p>
+
+            <p>
+              I&apos;m driven by the belief that AI can transform the critical industries civilization
+              depends on to unlock abundance for all—and I want to help build that future.
+            </p>
+
+            <p>
+              We&apos;re backed by{" "}
+              <a
+                href="https://www.ycombinator.com/companies/getasap"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+              >
+                Y Combinator
+              </a>
+              , Paul Graham, and General Catalyst to supercharge the world&apos;s oldest industry with
+              the power of AI.
+            </p>
+          </div>
+        </section>
+
+        {/* Technical Contributions */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-semibold tracking-tight mb-8 text-black">Technical Contributions</h2>
+
+          <div className="space-y-4 text-black">
+            <div className="grid grid-cols-[1rem_1fr] gap-x-3 text-[15px] leading-relaxed">
+              <span className="select-none">–</span>
+              <p>
+                Built the technology and logistics infrastructure that scaled GETASAP to 8-figure
+                revenue, and growing.{" "}
+                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-xs font-medium tracking-wide">
+                  Company
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-[1rem_1fr] gap-x-3 text-[15px] leading-relaxed">
+              <span className="select-none">–</span>
+              <p>
+                Co-authored RLSF, a new fine-tuning framework that uses symbolic tools to give LLMs
+                precise, token-level feedback, helping smaller models outperform models up to 1,000×
+                larger across coding, chemistry, and reasoning tasks. Published in ECAI 2025
+                (Bologna, Italy).{" "}
+                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-xs font-medium tracking-wide">
+                  Research
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-[1rem_1fr] gap-x-3 text-[15px] leading-relaxed">
+              <span className="select-none">–</span>
+              <p>
+                My previous startup{" "}
+                <a
+                  href="https://vigilai.co"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                >
+                  VigilAI
+                </a>{" "}
+                was one of the earliest adopters of AI in the govtech space, automating repetitive
+                police paperwork with multimodal VLMs to empower police officers. $160K preseed
+                funding raised.{" "}
+                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-xs font-medium tracking-wide">
+                  Company
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-[1rem_1fr] gap-x-3 text-[15px] leading-relaxed">
+              <span className="select-none">–</span>
+              <p>
+                Developed Therapute, winner of the{" "}
+                <a
+                  href="https://developers.google.com/community/gdsc-solution-challenge/winners"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                >
+                  Google &amp; UN Solution Challenge
+                </a>
+                ; selected out of 8,000 global applicants.{" "}
+                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-xs font-medium tracking-wide">
+                  Project
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-[1rem_1fr] gap-x-3 text-[15px] leading-relaxed">
+              <span className="select-none">–</span>
+              <p>
+                Developed{" "}
+                <a
+                  href="https://youtu.be/dAAoZXoLJas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                >
+                  Spark
+                </a>
+                , winner at UC Berkeley AI Hackathon, the largest AI hackathon in the US with over
+                2,000 participants.{" "}
+                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-xs font-medium tracking-wide">
+                  Project
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-[1rem_1fr] gap-x-3 text-[15px] leading-relaxed">
+              <span className="select-none">–</span>
+              <p>
+                Multiple hackathon wins including MIT Quantum Computing, Regeneron HealthTech, and
+                Congressional App Challenge.{" "}
+                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-xs font-medium tracking-wide">
+                  Project
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-[1rem_1fr] gap-x-3 text-[15px] leading-relaxed">
+              <span className="select-none">–</span>
+              <p>
+                Designed and built a CV-controlled custom gripper mechanism fitted to a UR3 robotic
+                arm for transporting stem cell well plates, in use at Georgia Tech&apos;s Marcus
+                Nanotechnology Lab.{" "}
+                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-xs font-medium tracking-wide">
+                  Research
+                </span>
+              </p>
+            </div>
+
+            <div className="grid grid-cols-[1rem_1fr] gap-x-3 text-[15px] leading-relaxed">
+              <span className="select-none">–</span>
+              <p>
+                Engineering a voice fingerprint model for secure candidate authentication for a
+                $500M+ ARR recruitment industry company, reducing interview fraud by 80%.{" "}
+                <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-xs font-medium tracking-wide">
+                  Internship
+                </span>
+              </p>
             </div>
           </div>
         </section>
 
         {/* Education Section */}
         <section id="education" className="mb-16">
-          <h2 className="text-2xl font-medium mb-8">Education</h2>
+          <h2 className="text-2xl font-semibold tracking-tight mb-8 text-black">Education</h2>
 
           <div className="space-y-8">
-            <div
-              className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
-            >
+            <div className="border-l border-[#ddd] pl-5">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">Georgia Institute of Technology</h3>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>August 2023 - May 2027</span>
+                <h3 className="text-lg font-semibold text-black">Georgia Institute of Technology</h3>
+                <span className="text-sm text-black">August 2023 - May 2027</span>
               </div>
-              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                B.S. in Computer Science (Threads: Artificial Intelligence, System Architecture)
+              <p className="mb-3 text-sm text-black">
+                BS in Computer Science (Specialization in AI, System Architecture)
               </p>
-              <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                Relevant Coursework: Data Structures & Algorithms, Object-Oriented Programming, Machine Learning,
-                Computer Organization, Perception & Robotics, Linear Algebra, Differential Equations
-              </p>
-            </div>
-
-            <div
-              className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">Y Combinator S25</h3>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Summer 2025</span>
-              </div>
-              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Founder, GETASAP</p>
-              <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                Building and scaling 8-hour B2B fresh-produce distribution for retailers and restaurants across the US & SEA, powered by proprietary micro-fulfillment network.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Experience Section */}
-        <section id="experience" className="mb-16">
-          <h2 className="text-2xl font-medium mb-8">Experience</h2>
-
-          <div className="space-y-8">
-            <div
-              className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">GETASAP</h3>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Dec 2023 - Present</span>
-              </div>
-              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                Founder
-              </p>
-              <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-              Same-day delivery of produce to thousands of retailers across the USA.
-              </p>
-            </div>
-
-            <div
-              className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">SDE Intern - Amazon Web Services</h3>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Fall 2025</span>
-              </div>
-              <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                [Offer] AWS backend team for Prime services.
-              </p>
-            </div>
-
-            <div
-              className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">Software Engineering Intern - VDart</h3>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>May 2024 - Aug 2024</span>
-              </div>
-              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>AI R&D Division</p>
-              <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-                Engineered ML pipeline to automate resume screening reducing processing time by 40%. Developed voice
-                fingerprint model for secure candidate authentication, reducing interview fraud by 80%.
-              </p>
-            </div>
-
-            <div
-              className={`border-l-2 pl-6 hover:translate-y-[-2px] transition-transform duration-200 cursor-pointer ${isDark ? "border-gray-700" : "border-gray-300"}`}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                <h3 className="text-lg font-medium">Founder - VigilTech</h3>
-                <span className={`text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>Nov 2023 - April 2025</span>
-              </div>
-              <p className={`mb-2 text-sm ${isDark ? "text-gray-400" : "text-gray-600"}`}>$160K Seed Funding Raised</p>
-              <p className={`text-sm leading-relaxed ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-              Automating repetitive police paperwork with verifiable AI, giving officers more time to protect and serve their communities.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Technical Contributions */}
-        <section className="mb-16">
-          <h2 className="text-2xl font-medium mb-8">Technical Contributions</h2>
-
-          <div className={`space-y-4 ${isDark ? "text-gray-300" : "text-gray-700"}`}>
-            <div className="flex items-start gap-3">
-              <span className={`mt-2 ${isDark ? "text-gray-500" : "text-gray-400"}`}>–</span>
-              <div className="text-sm leading-relaxed">
-                Published RLSF paper, a fine-tuning framework leveraging symbolic feedback for token-level LLM supervision at GT Research
-                Lab.
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className={`mt-2 ${isDark ? "text-gray-500" : "text-gray-400"}`}>–</span>
-              <div className="text-sm leading-relaxed">
-                Won Google Solution Challenge representing USA among 8,000 global applicants with Therapute, an AI-driven physiotherapy platform.
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className={`mt-2 ${isDark ? "text-gray-500" : "text-gray-400"}`}>–</span>
-              <div className="text-sm leading-relaxed">
-                Developed Spark, winner at UC Berkeley AI Hackathon, the largest AI hackathon in the US using HumeAI and Multi-Agent LLMs.
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className={`mt-2 ${isDark ? "text-gray-500" : "text-gray-400"}`}>–</span>
-              <div className="text-sm leading-relaxed">
-                Built 1Record at Cornell Health RX Hackathon, vectorizing 100K EHR records for patient outcome prediction.
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className={`mt-2 ${isDark ? "text-gray-500" : "text-gray-400"}`}>–</span>
-              <div className="text-sm leading-relaxed">
-                Multiple hackathon victories including MIT Quantum Computing, AI ATL, Regeneron HealthTech, and Congressional App Challenge Winner.
+              <div className="space-y-2 text-[15px] leading-relaxed text-black">
+                <div className="grid grid-cols-[1rem_1fr] gap-x-3">
+                  <span className="select-none">–</span>
+                  <p>
+                    Mentored by Dr. Ganesh at Georgia Tech&apos;s Aristotle Reasoning and Learning Lab.
+                  </p>
+                </div>
+                <div className="grid grid-cols-[1rem_1fr] gap-x-3">
+                  <span className="select-none">–</span>
+                  <p>
+                    Director of Fellowship at Startup Exchange, Georgia Tech&apos;s flagship startup
+                    accelerator.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact">
-          <h2 className="text-2xl font-medium mb-8">Let's Connect</h2>
-
-          <div className="flex flex-wrap gap-6">
+        {/* Footer */}
+        <footer className="mt-20 flex items-center justify-between gap-4 text-xs font-mono text-[#666]">
+          <p>
+            Pranavkrishna Suresh (
             <a
-              href="https://github.com/pranavkrishnasuresh"
-              className="flex items-center gap-2 text-sm hover:opacity-70 transition-opacity"
+              href="https://x.com/PKrishnaSuresh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-[#bbb] pb-px text-[#666] no-underline hover:border-[#666] transition-colors"
             >
-              <Github className="h-4 w-4" />
-              GitHub
+              @pkrishnasuresh
             </a>
-            {/* <a
-              href="https://pksuresh.vercel.app"
-              className="flex items-center gap-2 text-sm hover:opacity-70 transition-opacity"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Portfolio
-            </a> */}
+            )
+          </p>
+          <div className="flex items-center gap-4">
             <a
               href="https://linkedin.com/in/pranavkrishnasuresh"
-              className="flex items-center gap-2 text-sm hover:opacity-70 transition-opacity"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="hover:text-black transition-colors"
             >
-              <Linkedin className="h-4 w-4" />
-              LinkedIn
+              <Linkedin className="h-3.5 w-3.5" />
             </a>
             <a
               href="mailto:krishnasljrs@gmail.com"
-              className="flex items-center gap-2 text-sm hover:opacity-70 transition-opacity"
+              aria-label="Email"
+              className="hover:text-black transition-colors"
             >
-              <Mail className="h-4 w-4" />
-              krishnasljrs@gmail.com
+              <Mail className="h-3.5 w-3.5" />
             </a>
           </div>
-        </section>
+        </footer>
       </div>
     </div>
   )
