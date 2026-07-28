@@ -162,7 +162,16 @@ export default function AuraLanding() {
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
               <span className="select-none">–</span>
               <p>
-                Co-authored RLSF, a new fine-tuning framework that uses symbolic tools to give LLMs
+                Co-authored{" "}
+                <a
+                  href="https://doi.org/10.48550/arXiv.2405.16661"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                >
+                  RLSF
+                </a>
+                , a new fine-tuning framework that uses symbolic tools to give LLMs
                 precise, token-level feedback, helping smaller models outperform models up to 1,000×
                 larger across coding, chemistry, and reasoning tasks. Published in ECAI 2025
                 (Bologna, Italy).{" "}
