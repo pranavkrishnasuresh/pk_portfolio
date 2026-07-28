@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Linkedin, Mail } from "lucide-react"
+import { FeaturedTweets } from "@/components/paul-graham-tweet"
 import { siteConfig } from "@/lib/site"
 
 const personJsonLd = {
@@ -140,6 +141,8 @@ export default function AuraLanding() {
             </p>
           </div>
         </section>
+
+        <FeaturedTweets />
 
         {/* Technical Contributions */}
         <section className="mb-12 sm:mb-16">
