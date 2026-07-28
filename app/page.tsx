@@ -238,7 +238,7 @@ export default function AuraLanding() {
                 <div className="grid grid-cols-[1rem_1fr] gap-x-3">
                   <span className="select-none">–</span>
                   <p>
-                    Director of Fellowship at Startup Exchange, Georgia Tech&apos;s flagship startup
+                    Directed Fellowship at Startup Exchange, Georgia Tech&apos;s flagship startup
                     accelerator.
                   </p>
                 </div>
