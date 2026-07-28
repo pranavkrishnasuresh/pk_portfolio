@@ -270,7 +270,7 @@ export default function AuraLanding() {
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
               <span className="select-none">–</span>
               <p>
-                Engineering a voice fingerprint model for secure candidate authentication for a
+                Engineered a voice fingerprint model for secure candidate authentication for a
                 $500M+ ARR recruitment industry company, reducing interview fraud by 80%.{" "}
                 <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
                   Internship
