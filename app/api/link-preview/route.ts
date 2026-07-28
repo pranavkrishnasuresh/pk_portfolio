@@ -13,6 +13,10 @@ const ALLOWED_HOSTS = new Set([
   "www.youtube.com",
   "youtube.com",
   "m.youtube.com",
+  "github.com",
+  "www.github.com",
+  "mcbath.house.gov",
+  "www.mcbath.house.gov",
 ])
 
 export type LinkPreviewResponse = {

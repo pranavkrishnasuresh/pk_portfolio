@@ -17,6 +17,9 @@ const previewUrls = [
   "https://vigilai.co",
   "https://developers.google.com/community/gdsc-solution-challenge/winners",
   "https://youtu.be/dAAoZXoLJas",
+  "https://github.com/pranavkrishnasuresh/Photonic-Quantum-GAN",
+  "https://youtu.be/V6nDv9aISkY",
+  "https://mcbath.house.gov/?p=2546",
 ] as const
 
 const personJsonLd = {
@@ -248,13 +251,33 @@ export default function AuraLanding() {
 
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
               <span className="select-none">–</span>
-              <p>
-                Multiple hackathon wins including MIT Quantum Computing, Regeneron HealthTech, and
-                Congressional App Challenge.{" "}
+              <div>
+                Multiple hackathon wins including{" "}
+                <HoverLinkPreview
+                  href="https://github.com/pranavkrishnasuresh/Photonic-Quantum-GAN"
+                  className={previewLinkClassName}
+                >
+                  MIT Quantum Computing
+                </HoverLinkPreview>
+                ,{" "}
+                <HoverLinkPreview
+                  href="https://youtu.be/V6nDv9aISkY"
+                  className={previewLinkClassName}
+                >
+                  Regeneron HealthTech
+                </HoverLinkPreview>
+                , and{" "}
+                <HoverLinkPreview
+                  href="https://mcbath.house.gov/?p=2546"
+                  className={previewLinkClassName}
+                >
+                  Congressional App Challenge
+                </HoverLinkPreview>
+                .{" "}
                 <span className="mt-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:ml-1 sm:mt-0 sm:text-xs">
                   Project
                 </span>
-              </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
