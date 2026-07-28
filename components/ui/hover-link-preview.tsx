@@ -1,107 +1,175 @@
 "use client"
 
-import type * as React from "react"
-import { useRef, useState } from "react"
-import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion"
+import { useEffect, useState, type ReactNode } from "react"
+import { cn } from "@/lib/utils"
+import {
+  ensureOgPreview,
+  ensureScreenshotPreview,
+  getCachedLinkPreview,
+  prefetchLinkPreviews,
+  subscribeLinkPreview,
+  type LinkPreviewData,
+} from "@/lib/link-preview-client"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 
 interface HoverLinkPreviewProps {
   href: string
-  previewImage: string
-  imageAlt?: string
-  children: React.ReactNode
+  children: ReactNode
+  className?: string
 }
 
-const HoverLinkPreview: React.FC<HoverLinkPreviewProps> = ({
-  href,
-  previewImage,
-  imageAlt = "Link preview",
-  children,
-}) => {
-  const [showPreview, setShowPreview] = useState(false)
-  const prevX = useRef<number | null>(null)
-
-  // Motion values for smooth animation
-  const motionTop = useMotionValue(0)
-  const motionLeft = useMotionValue(0)
-  const motionRotate = useMotionValue(0)
-
-  // Springs for natural movement
-  const springTop = useSpring(motionTop, { stiffness: 300, damping: 30 })
-  const springLeft = useSpring(motionLeft, { stiffness: 300, damping: 30 })
-  const springRotate = useSpring(motionRotate, { stiffness: 300, damping: 20 })
-
-  // Handlers
-  const handleMouseEnter = () => {
-    setShowPreview(true)
-    prevX.current = null
+function getHostname(href: string) {
+  try {
+    return new URL(href).hostname.replace(/^www\./, "")
+  } catch {
+    return href
   }
+}
 
-  const handleMouseLeave = () => {
-    setShowPreview(false)
-    prevX.current = null
-    motionRotate.set(0)
-  }
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const PREVIEW_WIDTH = 192
-    const PREVIEW_HEIGHT = 112
-    const OFFSET_Y = 40
-
-    // Position the preview
-    motionTop.set(e.clientY - PREVIEW_HEIGHT - OFFSET_Y)
-    motionLeft.set(e.clientX - PREVIEW_WIDTH / 2)
-
-    // Calculate tilt based on horizontal movement
-    if (prevX.current !== null) {
-      const deltaX = e.clientX - prevX.current
-      const newRotate = Math.max(-15, Math.min(15, deltaX * 1.2))
-      motionRotate.set(newRotate)
+export function LinkPreviewPrefetcher({ urls }: { urls: readonly string[] }) {
+  useEffect(() => {
+    const list = [...urls]
+    const run = () => {
+      void prefetchLinkPreviews(list)
     }
-    prevX.current = e.clientX
-  }
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(run, { timeout: 1500 })
+      return () => window.cancelIdleCallback(id)
+    }
+
+    const timeout = window.setTimeout(run, 400)
+    return () => window.clearTimeout(timeout)
+    // Prefetch once for the stable URL list passed from the page.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return null
+}
+
+export function HoverLinkPreview({
+  href,
+  children,
+  className,
+}: HoverLinkPreviewProps) {
+  const [open, setOpen] = useState(false)
+  const [preview, setPreview] = useState<LinkPreviewData | null>(() =>
+    getCachedLinkPreview(href)
+  )
+  const [ogLoaded, setOgLoaded] = useState(false)
+  const [shotLoaded, setShotLoaded] = useState(false)
+  const [failed, setFailed] = useState(false)
+  const host = getHostname(href)
+
+  useEffect(() => subscribeLinkPreview(href, setPreview), [href])
+
+  useEffect(() => {
+    void ensureOgPreview(href)
+    void ensureScreenshotPreview(href)
+  }, [href])
+
+  useEffect(() => {
+    if (!open) return
+    void ensureOgPreview(href)
+    void ensureScreenshotPreview(href)
+  }, [open, href])
+
+  useEffect(() => {
+    setOgLoaded(false)
+    setShotLoaded(false)
+  }, [preview?.ogImage, preview?.screenshot])
+
+  const title = preview?.title ?? host
+  const ogImage = preview?.ogImage ?? null
+  const screenshot = preview?.screenshot ?? null
+  const hasAnyImage = Boolean(ogImage || screenshot)
+  const waiting = !preview || (!hasAnyImage && !failed)
+  const showFailure = failed && !hasAnyImage
 
   return (
-    <>
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative inline-block cursor-pointer underline hover:opacity-70 transition-opacity"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove}
+    <HoverCard open={open} onOpenChange={setOpen} openDelay={160} closeDelay={100}>
+      <HoverCardTrigger asChild>
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={cn(className)}
+        >
+          {children}
+        </a>
+      </HoverCardTrigger>
+      <HoverCardContent
+        side="top"
+        align="center"
+        sideOffset={12}
+        className="w-[320px] overflow-hidden rounded-2xl border border-black/10 bg-white p-0 shadow-[0_18px_50px_rgba(0,0,0,0.18)]"
       >
-        {children}
-      </a>
+        <div className="relative aspect-[16/10] overflow-hidden bg-[#ececec]">
+          {ogImage && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={ogImage}
+              alt=""
+              aria-hidden={Boolean(screenshot)}
+              draggable={false}
+              className={cn(
+                "absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-300",
+                ogLoaded ? "opacity-100" : "opacity-0",
+                screenshot && shotLoaded && "opacity-0"
+              )}
+              onLoad={() => {
+                setOgLoaded(true)
+                setFailed(false)
+              }}
+              onError={() => {
+                if (!screenshot) setFailed(true)
+              }}
+            />
+          )}
 
-      <AnimatePresence>
-        {showPreview && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: -10, rotate: 0 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: -10, rotate: 0 }}
-            style={{
-              position: "fixed",
-              top: springTop,
-              left: springLeft,
-              rotate: springRotate,
-              zIndex: 50,
-              pointerEvents: "none",
-            }}
-          >
-            <div className="bg-white border rounded-2xl shadow-lg p-2 min-w-[180px] max-w-xs">
-              <img
-                src={previewImage || "/placeholder.svg"}
-                alt={imageAlt}
-                draggable={false}
-                className="w-48 h-28 object-cover rounded-md"
-              />
+          {screenshot && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={screenshot}
+              alt={`Preview of ${title}`}
+              draggable={false}
+              className={cn(
+                "absolute inset-0 h-full w-full object-cover object-top transition-opacity duration-500",
+                shotLoaded ? "opacity-100" : "opacity-0"
+              )}
+              onLoad={() => {
+                setShotLoaded(true)
+                setFailed(false)
+              }}
+              onError={() => {
+                if (!ogImage) setFailed(true)
+              }}
+            />
+          )}
+
+          {(waiting || (hasAnyImage && !ogLoaded && !shotLoaded)) && (
+            <div className="absolute inset-0 animate-pulse bg-[#e4e4e4]" />
+          )}
+
+          {showFailure && (
+            <div className="absolute inset-0 flex items-center justify-center px-4 text-center text-xs text-[#888]">
+              Preview unavailable
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+          )}
+        </div>
+        <div className="space-y-0.5 border-t border-black/5 px-3.5 py-2.5">
+          <div className="line-clamp-2 text-[13px] font-semibold leading-snug text-black">
+            {waiting ? "Loading preview…" : title}
+          </div>
+          <div className="truncate text-[11px] font-medium tracking-wide text-[#888]">
+            {host}
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
   )
 }
-
-export { HoverLinkPreview }

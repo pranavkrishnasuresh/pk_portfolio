@@ -1,7 +1,23 @@
 import Image from "next/image"
 import { Linkedin, Mail } from "lucide-react"
 import { FeaturedTweets } from "@/components/paul-graham-tweet"
+import {
+  HoverLinkPreview,
+  LinkPreviewPrefetcher,
+} from "@/components/ui/hover-link-preview"
 import { siteConfig } from "@/lib/site"
+
+const previewLinkClassName =
+  "font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+
+const previewUrls = [
+  "https://www.getasap.us",
+  "https://www.ycombinator.com/companies/getasap",
+  "https://doi.org/10.48550/arXiv.2405.16661",
+  "https://vigilai.co",
+  "https://developers.google.com/community/gdsc-solution-challenge/winners",
+  "https://youtu.be/dAAoZXoLJas",
+] as const
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -38,6 +54,7 @@ export default function AuraLanding() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
+      <LinkPreviewPrefetcher urls={previewUrls} />
       <div className="max-w-[720px] mx-auto px-4 py-6 sm:px-6 sm:py-8">
         {/* Header */}
         <header className="mb-10 flex flex-col gap-3 sm:mb-16 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
@@ -88,7 +105,7 @@ export default function AuraLanding() {
             About
           </h2>
 
-          <div className="text-base leading-[1.7] text-black [&>p+p]:mt-4 sm:text-[17px] sm:[&>p+p]:mt-5">
+          <div className="text-base leading-[1.7] text-black [&>*+*]:mt-4 sm:text-[17px] sm:[&>*+*]:mt-5">
             <div className="float-right mb-3 ml-4 h-[100px] w-[100px] overflow-hidden rounded-full border border-black/15 [shape-outside:circle()] sm:mb-2 sm:ml-8 sm:h-[150px] sm:w-[150px]">
               <Image
                 src="/headshot.png"
@@ -106,39 +123,35 @@ export default function AuraLanding() {
               from Milton, Georgia.
             </p>
 
-            <p>
+            <div>
               I am the founder of{" "}
-              <a
+              <HoverLinkPreview
                 href="https://www.getasap.us"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                className={previewLinkClassName}
               >
                 GETASAP
-              </a>{" "}
+              </HoverLinkPreview>{" "}
               (YC S25), an AI-Native Fresh Produce Logistics company. We enable same-day delivery of
               produce to thousands of retailers and restaurants across the USA and operate an
               AI-enabled freight brokerage.
-            </p>
+            </div>
 
             <p>
               I&apos;m driven by the belief that AI can transform the critical industries civilization
               depends on to unlock abundance for all, and I want to help build that future.
             </p>
 
-            <p>
+            <div>
               We&apos;re backed by{" "}
-              <a
+              <HoverLinkPreview
                 href="https://www.ycombinator.com/companies/getasap"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                className={previewLinkClassName}
               >
                 Y Combinator
-              </a>
+              </HoverLinkPreview>
               , Paul Graham, and General Catalyst to supercharge the world&apos;s oldest industry with
               the power of AI.
-            </p>
+            </div>
           </div>
         </section>
 
@@ -164,16 +177,14 @@ export default function AuraLanding() {
 
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
               <span className="select-none">–</span>
-              <p>
+              <div>
                 Co-authored{" "}
-                <a
+                <HoverLinkPreview
                   href="https://doi.org/10.48550/arXiv.2405.16661"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                  className={previewLinkClassName}
                 >
                   RLSF
-                </a>
+                </HoverLinkPreview>
                 , a new fine-tuning framework that uses symbolic tools to give LLMs
                 precise, token-level feedback, helping smaller models outperform models up to 1,000×
                 larger across coding, chemistry, and reasoning tasks. Published in ECAI 2025
@@ -181,67 +192,58 @@ export default function AuraLanding() {
                 <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
                   Research
                 </span>
-              </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
               <span className="select-none">–</span>
-              <p>
+              <div>
                 My previous startup{" "}
-                <a
-                  href="https://vigilai.co"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
-                >
+                <HoverLinkPreview href="https://vigilai.co" className={previewLinkClassName}>
                   VigilAI
-                </a>{" "}
+                </HoverLinkPreview>{" "}
                 was one of the earliest adopters of AI in the govtech space, automating repetitive
                 police paperwork with multimodal VLMs to empower police officers. $160K preseed
                 funding raised.{" "}
                 <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
                   Company
                 </span>
-              </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
               <span className="select-none">–</span>
-              <p>
+              <div>
                 Developed Therapute, winner of the{" "}
-                <a
+                <HoverLinkPreview
                   href="https://developers.google.com/community/gdsc-solution-challenge/winners"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                  className={previewLinkClassName}
                 >
                   Google &amp; UN Solution Challenge
-                </a>
+                </HoverLinkPreview>
                 ; selected out of 8,000 global applicants.{" "}
                 <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
                   Project
                 </span>
-              </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
               <span className="select-none">–</span>
-              <p>
+              <div>
                 Developed{" "}
-                <a
+                <HoverLinkPreview
                   href="https://youtu.be/dAAoZXoLJas"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
+                  className={previewLinkClassName}
                 >
                   Spark
-                </a>
+                </HoverLinkPreview>
                 , winner at UC Berkeley AI Hackathon, the largest AI hackathon in the US with over
                 2,000 participants.{" "}
                 <span className="ml-1 inline-block rounded border border-black/20 px-1.5 py-0.5 text-[11px] font-medium tracking-wide sm:text-xs">
                   Project
                 </span>
-              </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-[0.75rem_1fr] gap-x-2 text-[14px] leading-relaxed sm:grid-cols-[1rem_1fr] sm:gap-x-3 sm:text-[15px]">
