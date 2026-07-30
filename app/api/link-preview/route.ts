@@ -9,6 +9,8 @@ const ALLOWED_HOSTS = new Set([
   "vigilai.co",
   "www.vigilai.co",
   "developers.google.com",
+  "developers.googleblog.com",
+  "www.developers.googleblog.com",
   "youtu.be",
   "www.youtube.com",
   "youtube.com",

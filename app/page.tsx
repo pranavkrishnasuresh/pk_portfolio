@@ -15,7 +15,7 @@ const previewUrls = [
   "https://www.ycombinator.com/companies/getasap",
   "https://doi.org/10.48550/arXiv.2405.16661",
   "https://vigilai.co",
-  "https://developers.google.com/community/gdsc-solution-challenge/winners",
+  "https://developers.googleblog.com/5-years-of-innovation-student-developers-solving-real-world-problems-using-google-tech/",
   "https://youtu.be/dAAoZXoLJas",
   "https://github.com/pranavkrishnasuresh/Photonic-Quantum-GAN",
   "https://youtu.be/V6nDv9aISkY",
@@ -219,7 +219,7 @@ export default function AuraLanding() {
               <div>
                 Developed Therapute, winner of the{" "}
                 <HoverLinkPreview
-                  href="https://developers.google.com/community/gdsc-solution-challenge/winners"
+                  href="https://developers.googleblog.com/5-years-of-innovation-student-developers-solving-real-world-problems-using-google-tech/"
                   className={previewLinkClassName}
                 >
                   Google &amp; UN Solution Challenge
