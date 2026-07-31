@@ -58,6 +58,7 @@ const explorations: Exploration[] = [
     year: 2022,
     title: "Why Science Is Still Slow",
     date: "08.10.22",
+    href: "/explorations/why-science-is-still-slow",
   },
 ]
 

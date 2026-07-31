@@ -22,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${siteConfig.url}/explorations/why-science-is-still-slow`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.7,
+    },
+    {
       url: `${siteConfig.url}/rlsf-paper`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
