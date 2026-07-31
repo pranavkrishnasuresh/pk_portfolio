@@ -8,23 +8,23 @@ export function SiteHeader() {
   const onExplorations = pathname === "/explorations" || pathname.startsWith("/explorations/")
 
   return (
-    <header className="mb-10 flex flex-col gap-3 sm:mb-16 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+    <header className="mb-8 flex items-center justify-between gap-2 sm:mb-16 sm:gap-4">
       <Link
         href="/"
-        className="-ml-2 inline-flex min-h-11 max-w-full items-center rounded-full px-2.5 py-1 text-lg font-semibold tracking-tight text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:-ml-3 sm:min-h-0 sm:px-3 sm:text-xl"
+        className="-ml-2 inline-flex min-h-11 max-w-[calc(100%-6.5rem)] items-center rounded-full px-2.5 py-1 text-base font-semibold leading-tight tracking-tight text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] active:bg-[#e8e8e8] sm:-ml-3 sm:min-h-0 sm:max-w-none sm:px-3 sm:text-xl sm:leading-none"
       >
         Pranavkrishna Suresh
       </Link>
       <nav
         aria-label="Primary"
-        className="-ml-2 flex flex-wrap items-center gap-0.5 sm:ml-0 sm:gap-1"
+        className="flex shrink-0 items-center gap-0.5 sm:gap-1"
       >
         {onExplorations ? (
           <Link
             href="/"
             prefetch
             aria-label="Back to home"
-            className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:min-h-0 sm:px-3"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full px-2.5 py-1 text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] active:bg-[#e8e8e8] sm:min-h-0 sm:min-w-0 sm:px-3"
           >
             <svg
               className="h-5 w-5"
@@ -43,7 +43,7 @@ export function SiteHeader() {
           <Link
             href="/explorations"
             prefetch
-            className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 font-[family-name:var(--font-caveat)] text-[1.35rem] font-semibold leading-none tracking-wide text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:min-h-0 sm:px-3 sm:text-[1.5rem]"
+            className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 font-[family-name:var(--font-caveat)] text-[1.25rem] font-semibold leading-none tracking-wide text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] active:bg-[#e8e8e8] sm:min-h-0 sm:px-3 sm:text-[1.5rem]"
           >
             Explorations
           </Link>
@@ -52,7 +52,7 @@ export function SiteHeader() {
           href="https://x.com/PKrishnaSuresh"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:min-h-0 sm:gap-2 sm:px-3"
+          className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] active:bg-[#e8e8e8] sm:min-h-0 sm:gap-2 sm:px-3"
         >
           <svg
             className="h-4 w-4 shrink-0"

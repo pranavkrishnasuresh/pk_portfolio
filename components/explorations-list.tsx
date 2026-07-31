@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { useEffect, useState } from "react"
 
 type Exploration = {
   year: number
@@ -59,44 +60,100 @@ const explorations: Exploration[] = [
 ]
 
 export function ExplorationsList() {
+  const [openKey, setOpenKey] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!openKey) return
+
+    const onPointerDown = (event: PointerEvent) => {
+      const target = event.target as HTMLElement | null
+      if (target?.closest("[data-exploration-pending]")) return
+      setOpenKey(null)
+    }
+
+    document.addEventListener("pointerdown", onPointerDown)
+    return () => document.removeEventListener("pointerdown", onPointerDown)
+  }, [openKey])
+
   return (
-    <ul className="space-y-5 sm:space-y-6">
+    <ul>
       {explorations.map((item, index) => {
-        const showYear =
+        const key = `${item.year}-${item.title}`
+        const firstOfYear =
           index === 0 || explorations[index - 1].year !== item.year
+        const isOpen = openKey === key
 
-        const titleClassName =
-          "inline-block max-w-full rounded-full px-2.5 py-1 text-[15px] text-black transition-colors duration-200 ease-in-out group-hover:bg-[#e8e8e8] group-focus-within:bg-[#e8e8e8] sm:text-[16px]"
-
-        return (
-          <li
-            key={`${item.year}-${item.title}`}
-            className="grid grid-cols-[2.75rem_minmax(0,1fr)_auto] items-baseline gap-x-2 sm:grid-cols-[3.25rem_minmax(0,1fr)_auto] sm:gap-x-3"
+        const titleInner = item.href ? (
+          <span className="rounded-xl px-1.5 py-0.5 transition-colors duration-200 ease-in-out group-hover:bg-neutral-200 group-active:bg-neutral-200">
+            {item.title}
+          </span>
+        ) : (
+          <span
+            className={`inline-grid max-w-full rounded-xl px-1.5 py-0.5 text-left transition-colors duration-200 ease-in-out [@media(hover:hover)]:group-hover:bg-neutral-200 group-active:bg-neutral-200 group-focus-within:bg-neutral-200 ${
+              isOpen ? "bg-neutral-200" : ""
+            }`}
           >
-            <span className="text-[13px] tabular-nums text-[#666] sm:text-sm">
-              {showYear ? item.year : ""}
+            <span
+              className={`col-start-1 row-start-1 transition-opacity duration-200 ease-in-out ${
+                isOpen
+                  ? "opacity-0"
+                  : "opacity-100 [@media(hover:hover)]:group-hover:opacity-0 group-focus-within:opacity-0"
+              }`}
+            >
+              {item.title}
             </span>
+            <span
+              className={`col-start-1 row-start-1 text-[#666] transition-opacity duration-200 ease-in-out ${
+                isOpen
+                  ? "opacity-100"
+                  : "opacity-0 [@media(hover:hover)]:group-hover:opacity-100 group-focus-within:opacity-100"
+              }`}
+              aria-hidden={!isOpen}
+            >
+              Uploading soon...
+            </span>
+          </span>
+        )
 
-            <div className="group relative min-w-0">
-              {item.href ? (
-                <Link href={item.href} prefetch className={titleClassName}>
-                  {item.title}
-                </Link>
-              ) : (
-                <button type="button" className={`${titleClassName} cursor-default text-left`}>
-                  {item.title}
-                </button>
-              )}
-              {!item.href && (
-                <p className="pointer-events-none absolute left-2.5 top-full mt-0.5 text-[13px] text-[#666] opacity-0 transition-opacity duration-200 ease-in-out group-hover:opacity-100 group-focus-within:opacity-100 sm:text-sm">
-                  Uploading soon...
-                </p>
-              )}
-            </div>
-
-            <span className="shrink-0 text-[13px] tabular-nums text-[#666] sm:text-sm">
+        const row = (
+          <span
+            className={`flex items-baseline py-2 ${
+              firstOfYear ? "" : "ml-10 sm:ml-14"
+            }`}
+          >
+            {firstOfYear && (
+              <span className="mt-0.5 inline-block w-10 shrink-0 self-start text-xs tabular-nums text-[#666] sm:w-14">
+                {item.year}
+              </span>
+            )}
+            <span className="min-w-0 grow pr-3 text-sm leading-snug text-black">
+              {titleInner}
+            </span>
+            <span className="mt-0.5 shrink-0 self-start text-xs tabular-nums text-[#666]">
               {item.date}
             </span>
+          </span>
+        )
+
+        return (
+          <li key={key} className="group">
+            {item.href ? (
+              <Link href={item.href} prefetch className="block">
+                {row}
+              </Link>
+            ) : (
+              <button
+                type="button"
+                data-exploration-pending
+                aria-expanded={isOpen}
+                className="block w-full cursor-default text-left"
+                onClick={() =>
+                  setOpenKey((current) => (current === key ? null : key))
+                }
+              >
+                {row}
+              </button>
+            )}
           </li>
         )
       })}

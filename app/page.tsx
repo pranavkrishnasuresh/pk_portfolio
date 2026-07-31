@@ -53,7 +53,7 @@ const personJsonLd = {
 
 export default function AuraLanding() {
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden">
+    <div className="min-h-screen bg-[#fcfcfc] text-black overflow-x-hidden">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

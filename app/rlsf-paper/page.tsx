@@ -15,7 +15,7 @@ export default function RLSFPaper() {
   return (
     <div
       className={`min-h-screen transition-colors duration-300 font-mono ${
-        isDark ? "bg-black text-white" : "bg-white text-black"
+        isDark ? "bg-black text-white" : "bg-[#fcfcfc] text-black"
       }`}
     >
       <div className="max-w-4xl mx-auto px-6 py-8">
