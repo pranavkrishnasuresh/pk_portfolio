@@ -33,11 +33,6 @@ const explorations: Exploration[] = [
   },
   {
     year: 2025,
-    title: "Learnings from YC Startup School",
-    date: "07.01.25",
-  },
-  {
-    year: 2025,
     title: "Teaching AI What's Wrong Is Hard",
     date: "06.01.25",
   },
@@ -50,11 +45,6 @@ const explorations: Exploration[] = [
     year: 2023,
     title: "Machines That Tell the Truth",
     date: "12.05.23",
-  },
-  {
-    year: 2023,
-    title: "The Value of College",
-    date: "10.15.23",
   },
   {
     year: 2022,
