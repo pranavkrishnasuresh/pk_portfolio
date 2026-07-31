@@ -15,7 +15,6 @@ export const backers: Backer[] = [
     name: "Y Combinator",
     src: "/backers/y-combinator.png",
     href: "https://www.ycombinator.com/companies/getasap",
-    mark: true,
   },
   {
     name: "General Catalyst",
