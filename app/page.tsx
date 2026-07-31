@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Linkedin, Mail } from "lucide-react"
 import { FeaturedTweets } from "@/components/paul-graham-tweet"
+import { SiteHeader } from "@/components/site-header"
 import {
   HoverLinkPreview,
   LinkPreviewPrefetcher,
@@ -59,48 +60,7 @@ export default function AuraLanding() {
       />
       <LinkPreviewPrefetcher urls={previewUrls} />
       <div className="mx-auto max-w-[720px] px-4 py-6 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-8 sm:pl-[max(1.5rem,env(safe-area-inset-left))] sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pt-[max(2rem,env(safe-area-inset-top))] sm:pb-[max(2rem,env(safe-area-inset-bottom))]">
-        {/* Header */}
-        <header className="mb-10 flex flex-col gap-3 sm:mb-16 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          <a
-            href="/"
-            className="-ml-2 inline-flex min-h-11 max-w-full items-center rounded-full px-2.5 py-1 text-lg font-semibold tracking-tight text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:-ml-3 sm:min-h-0 sm:px-3 sm:text-xl"
-          >
-            Pranavkrishna Suresh
-          </a>
-          <nav
-            aria-label="Primary"
-            className="-ml-2 flex flex-wrap items-center gap-0.5 sm:ml-0 sm:gap-1"
-          >
-            <div className="relative group">
-              <button
-                type="button"
-                className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] focus:bg-[#e8e8e8] focus:outline-none cursor-default sm:min-h-0 sm:px-3"
-              >
-                Explorations
-              </button>
-              <span className="pointer-events-none absolute left-1/2 top-full z-10 mt-1 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#e8e8e8] px-2.5 py-0.5 text-[11px] font-medium text-black opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:group-active:opacity-100">
-                Coming Soon
-              </span>
-            </div>
-            <a
-              href="/"
-              className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:min-h-0 sm:px-3"
-            >
-              About
-            </a>
-            <a
-              href="https://x.com/PKrishnaSuresh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] sm:min-h-0 sm:gap-2 sm:px-3"
-            >
-              <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
-              </svg>
-              <span className="hidden min-[380px]:inline">Follow me</span>
-            </a>
-          </nav>
-        </header>
+        <SiteHeader />
 
         <main>
         <section id="about" className="mb-12 sm:mb-16">
