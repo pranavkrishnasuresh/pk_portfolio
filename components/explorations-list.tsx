@@ -8,22 +8,24 @@ type Exploration = {
   title: string
   date: string
   href?: string
+  pendingLabel?: string
 }
 
 const explorations: Exploration[] = [
   {
     year: 2026,
     title: "Building for a World of Abundance",
-    date: "08.01.26",
+    date: "08.10.26",
+    pendingLabel: "Coming soon...",
   },
   {
     year: 2026,
-    title: "The Trucking Renaissance",
+    title: "Logistics Renaissance",
     date: "03.04.26",
   },
   {
     year: 2025,
-    title: "Selling Vegetables in the Age of AI",
+    title: "Intelligence in the Physical World",
     date: "12.25.25",
   },
   {
@@ -110,7 +112,7 @@ export function ExplorationsList() {
               }`}
               aria-hidden={!isOpen}
             >
-              Uploading soon...
+              {item.pendingLabel ?? "Uploading soon..."}
             </span>
           </span>
         )
