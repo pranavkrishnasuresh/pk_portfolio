@@ -8,10 +8,10 @@ export function SiteHeader() {
   const onExplorations = pathname === "/explorations" || pathname.startsWith("/explorations/")
 
   return (
-    <header className="mb-8 flex items-center justify-between gap-2 sm:mb-16 sm:gap-4">
+    <header className="mb-8 flex items-center justify-between gap-2 sm:mb-12 sm:gap-4">
       <Link
         href="/"
-        className="-ml-2 inline-flex min-h-11 max-w-[calc(100%-6.5rem)] items-center rounded-full px-2.5 py-1 text-base font-semibold leading-tight tracking-tight text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] active:bg-[#e8e8e8] sm:-ml-3 sm:min-h-0 sm:max-w-none sm:px-3 sm:text-xl sm:leading-none"
+        className="-ml-2 inline-flex min-h-11 max-w-[calc(100%-6.5rem)] items-center rounded-full px-2.5 py-1 text-lg font-semibold leading-tight tracking-tight text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] active:bg-[#e8e8e8] sm:-ml-3 sm:min-h-0 sm:max-w-none sm:px-3 sm:text-xl sm:leading-none"
       >
         Pranavkrishna Suresh
       </Link>

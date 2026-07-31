@@ -84,12 +84,12 @@ export function ExplorationsList() {
         const isOpen = openKey === key
 
         const titleInner = item.href ? (
-          <span className="rounded-xl px-1.5 py-0.5 transition-colors duration-200 ease-in-out group-hover:bg-neutral-200 group-active:bg-neutral-200">
+          <span className="rounded-xl px-2 py-0.5 transition-colors duration-200 ease-in-out group-hover:bg-neutral-200 group-active:bg-neutral-200">
             {item.title}
           </span>
         ) : (
           <span
-            className={`inline-grid max-w-full rounded-xl px-1.5 py-0.5 text-left transition-colors duration-200 ease-in-out [@media(hover:hover)]:group-hover:bg-neutral-200 group-active:bg-neutral-200 group-focus-within:bg-neutral-200 ${
+            className={`inline-grid max-w-full rounded-xl px-2 py-0.5 text-left transition-colors duration-200 ease-in-out [@media(hover:hover)]:group-hover:bg-neutral-200 group-active:bg-neutral-200 group-focus-within:bg-neutral-200 ${
               isOpen ? "bg-neutral-200" : ""
             }`}
           >
@@ -117,19 +117,19 @@ export function ExplorationsList() {
 
         const row = (
           <span
-            className={`flex items-baseline py-2 ${
-              firstOfYear ? "" : "ml-10 sm:ml-14"
+            className={`flex items-baseline py-2.5 sm:py-3 ${
+              firstOfYear ? "" : "ml-12 sm:ml-16"
             }`}
           >
             {firstOfYear && (
-              <span className="mt-0.5 inline-block w-10 shrink-0 self-start text-xs tabular-nums text-[#666] sm:w-14">
+              <span className="mt-0.5 inline-block w-12 shrink-0 self-start text-sm tabular-nums text-[#666] sm:w-16">
                 {item.year}
               </span>
             )}
-            <span className="min-w-0 grow pr-3 text-sm leading-snug text-black">
+            <span className="min-w-0 grow pr-3 text-base leading-snug text-black sm:text-[17px]">
               {titleInner}
             </span>
-            <span className="mt-0.5 shrink-0 self-start text-xs tabular-nums text-[#666]">
+            <span className="mt-0.5 shrink-0 self-start text-sm tabular-nums text-[#666]">
               {item.date}
             </span>
           </span>
