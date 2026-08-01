@@ -1,19 +1,35 @@
 import type { Metadata } from "next"
 import { ExplorationsList } from "@/components/explorations-list"
+import { JsonLd } from "@/components/json-ld"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
+import { getPublishedExplorations } from "@/lib/explorations"
+import { absoluteUrl } from "@/lib/seo"
+import { siteConfig } from "@/lib/site"
+
+const description =
+  "Essays and explorations by Pranavkrishna Suresh on AI, logistics, laboratory automation, and building."
 
 export const metadata: Metadata = {
   title: "Explorations",
-  description: "Explorations by Pranavkrishna Suresh.",
+  description,
   alternates: {
     canonical: "/explorations",
+    types: {
+      "application/rss+xml": "/feed.xml",
+    },
   },
   openGraph: {
-    title: "Explorations | Pranavkrishna Suresh",
-    description: "Explorations by Pranavkrishna Suresh.",
+    title: `Explorations | ${siteConfig.name}`,
+    description,
     url: "/explorations",
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: `Explorations | ${siteConfig.name}`,
+    description,
+    creator: siteConfig.twitter,
   },
 }
 
@@ -21,13 +37,40 @@ const pagePad =
   "mx-auto max-w-[720px] px-4 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-6 sm:pl-[max(1.5rem,env(safe-area-inset-left))] sm:pr-[max(1.5rem,env(safe-area-inset-right))]"
 
 export default function ExplorationsPage() {
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Explorations",
+    description,
+    url: absoluteUrl("/explorations"),
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    author: {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    hasPart: getPublishedExplorations().map((entry) => ({
+      "@type": "Article",
+      headline: entry.title,
+      url: absoluteUrl(`/explorations/${entry.slug}`),
+      datePublished: entry.publishedAt,
+      description: entry.description,
+    })),
+  }
+
   return (
     <div className="overflow-x-hidden bg-[#fcfcfc] text-black">
+      <JsonLd data={collectionJsonLd} />
       <div
         className={`${pagePad} flex min-h-[100dvh] flex-col pt-[max(1.5rem,env(safe-area-inset-top))] sm:pt-[max(2rem,env(safe-area-inset-top))]`}
       >
         <SiteHeader />
         <main className="flex-1 pb-4">
+          <h1 className="sr-only">Explorations</h1>
           <ExplorationsList />
         </main>
       </div>

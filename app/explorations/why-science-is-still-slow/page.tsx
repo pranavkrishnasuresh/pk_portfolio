@@ -1,8 +1,13 @@
-import type { Metadata } from "next"
 import Image from "next/image"
 import { EssaySectionNav } from "@/components/essay-section-nav"
+import { JsonLd } from "@/components/json-ld"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
+import { getExplorationBySlug } from "@/lib/explorations"
+import { articleJsonLd, explorationMetadata } from "@/lib/seo"
+
+const slug = "why-science-is-still-slow"
+const entry = getExplorationBySlug(slug)!
 
 const sections = [
   { id: "intro", label: "Why Science Is Still Slow" },
@@ -14,25 +19,12 @@ const sections = [
   { id: "the-compounding-of-science", label: "The Compounding of Science" },
 ] as const
 
-export const metadata: Metadata = {
-  title: "Why Science Is Still Slow",
-  description:
-    "A reflection on laboratory automation, a small stem-cell robot, and why science still struggles to compound.",
-  alternates: {
-    canonical: "/explorations/why-science-is-still-slow",
-  },
-  openGraph: {
-    title: "Why Science Is Still Slow | Pranavkrishna Suresh",
-    description:
-      "A reflection on laboratory automation, a small stem-cell robot, and why science still struggles to compound.",
-    url: "/explorations/why-science-is-still-slow",
-    type: "article",
-  },
-}
+export const metadata = explorationMetadata(slug)
 
 export default function WhyScienceIsStillSlowPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#fcfcfc] text-black">
+      <JsonLd data={articleJsonLd({ ...entry, slug })} />
       <EssaySectionNav sections={[...sections]} />
 
       <div className="mx-auto max-w-[720px] px-4 py-6 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-8 sm:pl-[max(1.5rem,env(safe-area-inset-left))] sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pt-[max(2rem,env(safe-area-inset-top))] sm:pb-[max(2rem,env(safe-area-inset-bottom))]">
@@ -41,10 +33,10 @@ export default function WhyScienceIsStillSlowPage() {
         <article>
           <header id="intro" className="mb-8 scroll-mt-24 sm:mb-10">
             <p className="mb-1.5 text-[12px] tabular-nums text-[#666] sm:mb-2 sm:text-sm">
-              08.10.22
+              {entry.date}
             </p>
             <h1 className="text-[1.35rem] font-semibold tracking-tight text-black sm:text-2xl">
-              Why Science Is Still Slow
+              {entry.title}
             </h1>
           </header>
 

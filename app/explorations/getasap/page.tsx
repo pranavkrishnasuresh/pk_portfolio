@@ -1,37 +1,29 @@
-import type { Metadata } from "next"
 import { Backers } from "@/components/backers"
+import { JsonLd } from "@/components/json-ld"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
+import { getExplorationBySlug } from "@/lib/explorations"
+import { articleJsonLd, explorationMetadata } from "@/lib/seo"
 
-export const metadata: Metadata = {
-  title: "GETASAP",
-  description:
-    "GETASAP — AI-native fresh produce logistics. Backed by Y Combinator, General Catalyst, and others.",
-  alternates: {
-    canonical: "/explorations/getasap",
-  },
-  openGraph: {
-    title: "GETASAP | Pranavkrishna Suresh",
-    description:
-      "GETASAP — AI-native fresh produce logistics. Backed by Y Combinator, General Catalyst, and others.",
-    url: "/explorations/getasap",
-    type: "website",
-  },
-}
+const slug = "getasap"
+const entry = getExplorationBySlug(slug)!
+
+export const metadata = explorationMetadata(slug)
 
 export default function GetasapExplorationPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#fcfcfc] text-black">
+      <JsonLd data={articleJsonLd({ ...entry, slug })} />
       <div className="mx-auto max-w-[720px] px-4 py-6 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-8 sm:pl-[max(1.5rem,env(safe-area-inset-left))] sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pt-[max(2rem,env(safe-area-inset-top))] sm:pb-[max(2rem,env(safe-area-inset-bottom))]">
         <SiteHeader />
 
         <main>
           <div className="mb-6 sm:mb-10">
             <p className="mb-1.5 text-[12px] tabular-nums text-[#666] sm:mb-2 sm:text-sm">
-              08.01.25
+              {entry.date}
             </p>
             <h1 className="text-[1.35rem] font-semibold tracking-tight text-black sm:text-2xl">
-              GETASAP
+              {entry.title}
             </h1>
           </div>
 

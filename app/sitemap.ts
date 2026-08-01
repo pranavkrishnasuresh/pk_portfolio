@@ -1,36 +1,36 @@
-import type { MetadataRoute } from 'next'
-import { siteConfig } from '@/lib/site'
+import type { MetadataRoute } from "next"
+import {
+  getExplorationPath,
+  getPublishedExplorations,
+} from "@/lib/explorations"
+import { siteConfig } from "@/lib/site"
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const published = getPublishedExplorations().map((entry) => ({
+    url: `${siteConfig.url}${getExplorationPath(entry)}`,
+    lastModified: entry.publishedAt ? new Date(entry.publishedAt) : new Date(),
+    changeFrequency: "yearly" as const,
+    priority: 0.7,
+  }))
+
   return [
     {
       url: siteConfig.url,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${siteConfig.url}/explorations`,
       lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
-    {
-      url: `${siteConfig.url}/explorations/getasap`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${siteConfig.url}/explorations/why-science-is-still-slow`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.7,
-    },
+    ...published,
     {
       url: `${siteConfig.url}/rlsf-paper`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: "yearly",
       priority: 0.4,
     },
   ]

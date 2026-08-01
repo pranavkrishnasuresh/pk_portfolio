@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { JsonLd } from "@/components/json-ld"
 import { FeaturedTweets } from "@/components/paul-graham-tweet"
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
@@ -6,7 +7,7 @@ import {
   HoverLinkPreview,
   LinkPreviewPrefetcher,
 } from "@/components/ui/hover-link-preview"
-import { siteConfig } from "@/lib/site"
+import { personJsonLd, websiteJsonLd } from "@/lib/seo"
 
 const previewLinkClassName =
   "font-semibold text-[#555] border-b border-[#ddd] pb-px no-underline hover:border-[#555] transition-colors"
@@ -23,41 +24,10 @@ const previewUrls = [
   "https://mcbath.house.gov/?p=2546",
 ] as const
 
-const personJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: siteConfig.name,
-  alternateName: siteConfig.shortName,
-  url: siteConfig.url,
-  image: `${siteConfig.url}${siteConfig.ogImage}`,
-  jobTitle: "Founder",
-  worksFor: {
-    "@type": "Organization",
-    name: "GETASAP",
-    url: "https://www.getasap.us",
-  },
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "Georgia Institute of Technology",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "San Francisco",
-    addressRegion: "CA",
-    addressCountry: "US",
-  },
-  sameAs: [siteConfig.twitterUrl, siteConfig.linkedinUrl, "https://www.getasap.us"],
-  email: `mailto:${siteConfig.email}`,
-  description: siteConfig.description,
-}
-
 export default function AuraLanding() {
   return (
     <div className="min-h-screen bg-[#fcfcfc] text-black overflow-x-hidden">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-      />
+      <JsonLd data={[websiteJsonLd(), personJsonLd()]} />
       <LinkPreviewPrefetcher urls={previewUrls} />
       <div className="mx-auto max-w-[720px] px-4 py-6 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pt-[max(1.5rem,env(safe-area-inset-top))] pb-[max(1.5rem,env(safe-area-inset-bottom))] sm:px-6 sm:py-8 sm:pl-[max(1.5rem,env(safe-area-inset-left))] sm:pr-[max(1.5rem,env(safe-area-inset-right))] sm:pt-[max(2rem,env(safe-area-inset-top))] sm:pb-[max(2rem,env(safe-area-inset-bottom))]">
         <SiteHeader />
