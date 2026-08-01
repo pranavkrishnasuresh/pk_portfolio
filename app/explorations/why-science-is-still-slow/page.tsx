@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { EssaySectionNav } from "@/components/essay-section-nav"
+import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 
 const sections = [
@@ -374,6 +375,8 @@ export default function WhyScienceIsStillSlowPage() {
             </p>
           </div>
         </article>
+
+        <SiteFooter />
       </div>
     </div>
   )

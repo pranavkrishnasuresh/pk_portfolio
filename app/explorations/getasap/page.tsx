@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Backers } from "@/components/backers"
+import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
 
 export const metadata: Metadata = {
@@ -53,6 +54,8 @@ export default function GetasapExplorationPage() {
 
           <Backers priorityCount={4} />
         </main>
+
+        <SiteFooter />
       </div>
     </div>
   )
