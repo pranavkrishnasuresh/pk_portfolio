@@ -46,8 +46,8 @@ export const backers: Backer[] = [
 
 export function Backers({ priorityCount = 0 }: { priorityCount?: number }) {
   return (
-    <section id="backers" className="mb-12 sm:mb-16">
-      <h2 className="mb-6 text-xl font-semibold tracking-tight text-black sm:mb-8 sm:text-2xl">
+    <section id="backers" className="mb-12 scroll-mt-24 sm:mb-16">
+      <h2 className="mb-6 scroll-mt-24 text-xl font-semibold tracking-tight text-black sm:mb-8 sm:text-[1.35rem]">
         Our Backers
       </h2>
 

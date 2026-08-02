@@ -49,13 +49,14 @@ export const explorations: ExplorationEntry[] = [
     slug: "getasap",
     publishedAt: "2025-08-01",
     description:
-      "GETASAP — AI-native fresh produce logistics. Backed by Y Combinator, General Catalyst, and others.",
+      "Why GETASAP is transforming fresh produce distribution and freight — an essay on AI, physical infrastructure, and an industry that has barely changed.",
     keywords: [
       "GETASAP",
       "Y Combinator",
       "fresh produce logistics",
       "AI freight",
       "cold chain",
+      "produce distribution",
     ],
   },
   {
