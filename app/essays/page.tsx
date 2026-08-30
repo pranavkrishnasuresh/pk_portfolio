@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "Essays",
   description,
   alternates: {
-    canonical: "/explorations",
+    canonical: "/essays",
     types: {
       "application/rss+xml": "/feed.xml",
     },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Essays | ${siteConfig.name}`,
     description,
-    url: "/explorations",
+    url: "/essays",
     type: "website",
   },
   twitter: {
@@ -42,7 +42,7 @@ export default function ExplorationsPage() {
     "@type": "CollectionPage",
     name: "Essays",
     description,
-    url: absoluteUrl("/explorations"),
+    url: absoluteUrl("/essays"),
     isPartOf: {
       "@type": "WebSite",
       name: siteConfig.name,
@@ -56,7 +56,7 @@ export default function ExplorationsPage() {
     hasPart: getPublishedExplorations().map((entry) => ({
       "@type": "Article",
       headline: entry.title,
-      url: absoluteUrl(`/explorations/${entry.slug}`),
+      url: absoluteUrl(`/essays/${entry.slug}`),
       datePublished: entry.publishedAt,
       description: entry.description,
     })),

@@ -3,8 +3,8 @@
  *
  * To publish a new essay:
  * 1. Add an entry here with `slug`, `description`, and `publishedAt` (ISO date).
- * 2. Create `app/explorations/<slug>/page.tsx` using `explorationMetadata(slug)`.
- * 3. Sitemap, RSS, and the Explorations list update automatically from this file.
+ * 2. Create `app/essays/<slug>/page.tsx` using `explorationMetadata(slug)`.
+ * 3. Sitemap, RSS, and the Essays list update automatically from this file.
  */
 
 export type ExplorationEntry = {
@@ -13,7 +13,7 @@ export type ExplorationEntry = {
   date: string
   /** Calendar year for grouping */
   year: number
-  /** If set, the piece is live at /explorations/<slug> */
+  /** If set, the piece is live at /essays/<slug> */
   slug?: string
   /** SEO / social description — required once published */
   description?: string
@@ -93,7 +93,7 @@ export const explorations: ExplorationEntry[] = [
 ]
 
 export function getExplorationPath(entry: ExplorationEntry) {
-  return entry.slug ? `/explorations/${entry.slug}` : undefined
+  return entry.slug ? `/essays/${entry.slug}` : undefined
 }
 
 export function getPublishedExplorations() {

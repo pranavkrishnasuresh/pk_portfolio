@@ -5,7 +5,11 @@ import { usePathname } from "next/navigation"
 
 export function SiteHeader() {
   const pathname = usePathname()
-  const onExplorations = pathname === "/explorations" || pathname.startsWith("/explorations/")
+  const onEssays =
+    pathname === "/essays" ||
+    pathname.startsWith("/essays/") ||
+    pathname === "/explorations" ||
+    pathname.startsWith("/explorations/")
 
   return (
     <header className="mb-8 flex items-center justify-between gap-2 sm:mb-12 sm:gap-4">
@@ -19,7 +23,7 @@ export function SiteHeader() {
         aria-label="Primary"
         className="flex shrink-0 items-center gap-0.5 sm:gap-1"
       >
-        {onExplorations ? (
+        {onEssays ? (
           <Link
             href="/"
             prefetch
@@ -41,7 +45,7 @@ export function SiteHeader() {
           </Link>
         ) : (
           <Link
-            href="/explorations"
+            href="/essays"
             prefetch
             className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 font-[family-name:var(--font-caveat)] text-[1.25rem] font-semibold leading-none tracking-wide text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] active:bg-[#e8e8e8] sm:min-h-0 sm:px-3 sm:text-[1.5rem]"
           >
