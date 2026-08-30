@@ -7,6 +7,29 @@ const NEXT_PG_TWEETS = ['1955037551196246312', '1955256725994393674']
 const ANKIT = '1960415581716545608'
 const TARO = '1960365165494575131'
 
+type TweetFallback = {
+  name: string
+  screenName: string
+  avatar: string
+  text: string
+  createdAt: string
+  verified?: boolean
+  ycBadge?: boolean
+}
+
+/** Used when Twitter syndication hides a tweet (private/limited account). */
+const TWEET_FALLBACKS: Record<string, TweetFallback> = {
+  [ANKIT]: {
+    name: 'Ankit Gupta',
+    screenName: 'agupta',
+    avatar: '/tweets/ankit-gupta.jpg',
+    text: "Congrats to Pranavkrishna & Raghav on launching! These are two of the most impressive founders I've ever met, redefining what I think is possible for a pair of young founders to pull off. This is one to watch.",
+    createdAt: '2025-08-26T18:54:00.000Z',
+    verified: true,
+    ycBadge: true,
+  },
+}
+
 const getTweet = unstable_cache(
   async (id: string) => fetchTweet(id),
   ['tweet'],
@@ -47,6 +70,18 @@ function formatTweetDate(date: string) {
   }).format(new Date(date))
 }
 
+function YcBadge() {
+  return (
+    <span
+      className="ml-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-[3px] bg-[#ff6600] text-[10px] font-semibold leading-none text-white"
+      title="Y Combinator"
+      aria-label="Y Combinator"
+    >
+      Y
+    </span>
+  )
+}
+
 function BlueVerifiedBadge() {
   return (
     <svg
@@ -71,9 +106,10 @@ async function MinimalTweet({
   replaceHandles?: boolean
 }) {
   const tweet = await getTweet(id)
+  const fallback = TWEET_FALLBACKS[id]
   const fallbackUrl = `https://x.com/i/status/${id}`
 
-  if (!tweet) {
+  if (!tweet && !fallback) {
     return (
       <a
         href={fallbackUrl}
@@ -86,9 +122,23 @@ async function MinimalTweet({
     )
   }
 
-  const tweetUrl = `https://x.com/${tweet.user.screen_name}/status/${tweet.id_str}`
-  const showVerified = tweet.user.verified || tweet.user.is_blue_verified
-  let body = decodeTweetText(tweet.text)
+  const tweetUrl = tweet
+    ? `https://x.com/${tweet.user.screen_name}/status/${tweet.id_str}`
+    : `https://x.com/${fallback!.screenName}/status/${id}`
+  const showVerified = tweet
+    ? tweet.user.verified || tweet.user.is_blue_verified
+    : Boolean(fallback?.verified)
+  const name = tweet?.user.name ?? fallback!.name
+  const screenName = tweet?.user.screen_name ?? fallback!.screenName
+  const avatar = tweet
+    ? tweet.user.profile_image_url_https.replace('_normal', '_bigger')
+    : fallback!.avatar
+  const createdAt = tweet?.created_at ?? fallback!.createdAt
+  const ycBadgeUrl = tweet?.user.highlighted_label?.badge?.url
+  const ycBadgeAlt = tweet?.user.highlighted_label?.description || 'Badge'
+  const showStaticYcBadge = !tweet && Boolean(fallback?.ycBadge)
+
+  let body = decodeTweetText(tweet?.text ?? fallback!.text)
   if (stripMentions) {
     body = stripLeadingMentions(body)
   }
@@ -108,7 +158,7 @@ async function MinimalTweet({
       <div className={`mb-2.5 flex items-center gap-2.5 ${compact ? 'sm:mb-3' : 'mb-3 gap-3'}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={tweet.user.profile_image_url_https.replace('_normal', '_bigger')}
+          src={avatar}
           alt=""
           width={compact ? 32 : 40}
           height={compact ? 32 : 40}
@@ -121,23 +171,25 @@ async function MinimalTweet({
                 compact ? 'text-[13px] sm:text-[14px]' : 'text-[15px]'
               }`}
             >
-              {tweet.user.name}
+              {name}
             </span>
             {showVerified ? <BlueVerifiedBadge /> : null}
-            {tweet.user.highlighted_label?.badge?.url ? (
+            {ycBadgeUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={tweet.user.highlighted_label.badge.url}
-                alt={tweet.user.highlighted_label.description || 'Badge'}
-                title={tweet.user.highlighted_label.description || undefined}
+                src={ycBadgeUrl}
+                alt={ycBadgeAlt}
+                title={ycBadgeAlt}
                 width={16}
                 height={16}
                 className="ml-0.5 h-4 w-4 rounded-[3px] object-cover"
               />
+            ) : showStaticYcBadge ? (
+              <YcBadge />
             ) : null}
           </div>
           <div className={`truncate text-[#666] ${compact ? 'text-[11px] sm:text-[12px]' : 'text-[13px]'}`}>
-            @{tweet.user.screen_name}
+            @{screenName}
           </div>
         </div>
         <svg
@@ -163,7 +215,7 @@ async function MinimalTweet({
           compact ? 'text-[11px] sm:text-[12px]' : 'mt-4 pt-3 text-[13px]'
         }`}
       >
-        {formatTweetDate(tweet.created_at)}
+        {formatTweetDate(createdAt)}
       </div>
     </a>
   )
