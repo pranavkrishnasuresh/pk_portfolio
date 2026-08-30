@@ -45,7 +45,7 @@ export function SiteHeader() {
             prefetch
             className="inline-flex min-h-11 items-center rounded-full px-2.5 py-1 font-[family-name:var(--font-caveat)] text-[1.25rem] font-semibold leading-none tracking-wide text-black transition-colors duration-200 ease-in-out hover:bg-[#e8e8e8] active:bg-[#e8e8e8] sm:min-h-0 sm:px-3 sm:text-[1.5rem]"
           >
-            Explorations
+            Essays
           </Link>
         )}
         <a

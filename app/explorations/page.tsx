@@ -8,10 +8,10 @@ import { absoluteUrl } from "@/lib/seo"
 import { siteConfig } from "@/lib/site"
 
 const description =
-  "Essays and explorations by Pranavkrishna Suresh on AI, logistics, laboratory automation, and building."
+  "Essays by Pranavkrishna Suresh on AI, logistics, laboratory automation, and building."
 
 export const metadata: Metadata = {
-  title: "Explorations",
+  title: "Essays",
   description,
   alternates: {
     canonical: "/explorations",
@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: `Explorations | ${siteConfig.name}`,
+    title: `Essays | ${siteConfig.name}`,
     description,
     url: "/explorations",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: `Explorations | ${siteConfig.name}`,
+    title: `Essays | ${siteConfig.name}`,
     description,
     creator: siteConfig.twitter,
   },
@@ -40,7 +40,7 @@ export default function ExplorationsPage() {
   const collectionJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Explorations",
+    name: "Essays",
     description,
     url: absoluteUrl("/explorations"),
     isPartOf: {
@@ -70,7 +70,7 @@ export default function ExplorationsPage() {
       >
         <SiteHeader />
         <main className="flex-1 pb-4">
-          <h1 className="sr-only">Explorations</h1>
+          <h1 className="sr-only">Essays</h1>
           <ExplorationsList />
         </main>
       </div>
