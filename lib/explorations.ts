@@ -39,11 +39,6 @@ export const explorations: ExplorationEntry[] = [
   },
   {
     year: 2025,
-    title: "Intelligence in the Physical World",
-    date: "12.25.25",
-  },
-  {
-    year: 2025,
     title: "GETASAP",
     date: "08.01.25",
     slug: "getasap",
@@ -63,11 +58,6 @@ export const explorations: ExplorationEntry[] = [
     year: 2025,
     title: "Teaching AI What's Wrong Is Hard",
     date: "06.01.25",
-  },
-  {
-    year: 2024,
-    title: "AI Loves Boring Industries",
-    date: "05.15.24",
   },
   {
     year: 2023,
